@@ -1,25 +1,31 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include "../h/lexer.h"
 
-class Lexer {
+using namespace std;
 
-    // Function to read a String 
+Lexer :: Lexer(const int t) : temp(t) {}
 
-    public:
+string Lexer :: readFile() {
+    ifstream file;
+    file.open("../tests/addition.txt");//open the input file
 
-        string file;
+    string code;
 
-        void readFile() {
-            ofstream code;
-            code.open ("../tests/initial.txt");
-        }
-        void readString() {
+    stringstream strStream;
+    strStream << file.rdbuf();
+    code = strStream.str();
 
-        }
-
-        
-
+    return code;
 }
 
+void Lexer :: readString() {
+    
+}
 
+int Lexer :: test()
+{
+    return 1;
+}
