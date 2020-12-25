@@ -1,0 +1,14 @@
+
+int fizzBuzz = (int : num) ==> {
+
+	| for int i = 0 | i < num | i++ | {
+
+		(i % 3 == 0) && (i % 5  == 0) ? print: fizz buzz
+		
+		(i % 3 == 0) ? print: fizz
+
+	}
+
+	return { int }
+
+}

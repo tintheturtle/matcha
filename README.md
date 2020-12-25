@@ -1,5 +1,5 @@
 Compile:
-    clang++ -o main main.cpp
-    
+- clang++ -o main main.cpp
+
 Run:
-    ./main
+- ./main
