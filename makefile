@@ -1,2 +1,2 @@
-hellomake:
-	g++ -o hellomake ./src/lexer.cpp ./src/main.cpp
+matcha:
+	g++ -o matcha ./src/lexer.cpp ./src/main.cpp
