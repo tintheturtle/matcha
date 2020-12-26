@@ -1,7 +1,7 @@
+#include <string>
+#include "../h/token.h"
 
+using namespace std;
 
-class Types {
+Token :: Token(const int t) : temp(t) {}
 
-    public: 
-        
-}

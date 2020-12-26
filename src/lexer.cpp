@@ -8,7 +8,9 @@ using namespace std;
 
 Lexer :: Lexer(const int t) : temp(t) {}
 
-string Lexer :: readFile() {
+std::string Lexer :: readFile() {
+
+    // TODO: Read line by line and remove any newlines in the string
     ifstream file;
     file.open("../tests/addition.txt");//open the input file
 
@@ -22,7 +24,7 @@ string Lexer :: readFile() {
 }
 
 void Lexer :: readString() {
-    
+
 }
 
 int Lexer :: test()
