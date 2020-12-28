@@ -10,6 +10,9 @@ Lexer :: Lexer(const int t) : temp(t) {}
 
 string Lexer :: readFile() {
 
+    // Object for reading file
+    ifstream code;
+
     // Open file to read and get ASCII Test 
     // (Note: Must consider directory of makefile for handling files)
     code.open("./tests/fizzbuzz.txt",ios::in); 
