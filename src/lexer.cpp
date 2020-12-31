@@ -45,35 +45,33 @@ string Lexer :: readFile() {
 void Lexer :: tokenizer(string code) {
 
     // Initialize stack (holds tokens to return)
-    // string tokens;
+    stack<string> tokens;
     std::string tokenText = "";
 
+    // Add end file symbol
+    code = code + '\0';
 
     // Iterate through string
     for (auto x : code) {
 
-        if (x == ' ' || x == '\t') {
+        if ( x == ' ' || x == '\t' || x == '\0' ) {
 
             int whitespace = tokenText.compare(" ");
             int tab = tokenText.compare("\t");
             int newline = tokenText.compare("\n");
 
-            if (whitespace != 0 && tab != 0 && newline != 0 ) {
-
-
-
-                cout << tokenText << '\n' << endl;
+            if (whitespace > 0 && tab > 0 && newline > 0) {
+                cout << tokenText << endl;
+                tokens.push(tokenText);
             } 
             tokenText = "";
         } else {
             tokenText = tokenText + x;
-        }
+        }  
     }
 
-    // cout << tokenText << endl;
+    cout << tokens.top() << endl;
 
-        
-    
 }
 
 int Lexer :: test()

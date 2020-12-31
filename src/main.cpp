@@ -18,7 +18,6 @@ int main() {
 
     // Read file with code
     string code = lex.readFile();
-    printf("%s\n", code.c_str());
     lex.tokenizer(code.c_str());
 
 
