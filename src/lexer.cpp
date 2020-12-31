@@ -61,7 +61,6 @@ void Lexer :: tokenizer(string code) {
             int newline = tokenText.compare("\n");
 
             if (whitespace > 0 && tab > 0 && newline > 0) {
-                cout << tokenText << endl;
                 tokens.push(tokenText);
             } 
             tokenText = "";

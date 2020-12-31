@@ -10,7 +10,7 @@ using std::unordered_map;
 class Token {
     private:
         int temp;
-        unordered_map<string, int> tokenMap;
+        unordered_map<string, string> tokenMap;
     public:
         Token(const int temp = 0);
         void init();
