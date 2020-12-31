@@ -11,7 +11,7 @@ class Lexer {
     public:
         Lexer(const int temp = 0);
         string readFile();
-        void readString();
+        void tokenizer(string code);
         int test();
 };
 
