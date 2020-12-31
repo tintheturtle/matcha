@@ -12,16 +12,10 @@ class Token {
         Token(const int temp = 0);
         int ink = 1;
         string classifyString(string input);
-        enum Type {
-            Identifier,
-            Keyword,
-            Separator,
-            Operator,
-            Literal,
-            Comment,
-            Whitespace,
-            Endline
-        };
+        bool isKeyword(string input);
+        bool isValidIdentifier(string input);
+        bool isDigit(string input);
+        bool isOperator(string input);
 };
 
 #endif
