@@ -20,6 +20,9 @@ int main() {
     string code = lex.readFile();
     lex.tokenizer(code.c_str());
 
+    // Testing Token class
+    token.init();
+    token.classifyString("hello");
 
     // Hello World
     printf("%s\n", "Hello World");
