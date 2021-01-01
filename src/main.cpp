@@ -18,6 +18,7 @@ int main() {
 
     // Read file with code
     string code = lex.readFile();
+    lex.init();
     lex.tokenizer(code.c_str());
 
     // Testing Token class

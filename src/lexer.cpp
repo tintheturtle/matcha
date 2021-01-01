@@ -3,11 +3,18 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
+
 #include "../h/lexer.h"
+#include "../h/token.h"
 
 using namespace std;
 
 Lexer :: Lexer(const int t) : temp(t) {}
+
+void Lexer :: init() {
+    Token token;
+    token.init();
+}
 
 // Takes a file and reads it into a string
 string Lexer :: readFile() {
@@ -48,6 +55,8 @@ void Lexer :: tokenizer(string code) {
     stack<string> tokens;
     std::string tokenText = "";
 
+    token.init();
+
     // Add end file symbol
     code = code + '\0';
 
@@ -61,7 +70,9 @@ void Lexer :: tokenizer(string code) {
             int newline = tokenText.compare("\n");
 
             if (whitespace > 0 && tab > 0 && newline > 0) {
-                tokens.push(tokenText);
+                // Call method for getting type here:
+                string res = token.classifyString(tokenText);
+                tokens.push(res);
             } 
             tokenText = "";
         } else {

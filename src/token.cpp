@@ -13,9 +13,14 @@ void Token :: init() {
 
     // Fill map with keywords
     tokenMap["int"] = "Keyword";
-    tokenMap["return"] = "Keyword"
-    tokenMap["==>"] = "Keyword"
+    tokenMap["return"] = "Keyword";
+    tokenMap["print"] = "Keyword";
+    tokenMap["==>"] = "Keyword";
     tokenMap["|"] = "Keyword";
+    tokenMap["?"] = "Keyword";
+    tokenMap["&&"] = "Keyword";
+    tokenMap[":"] = "Keyword";
+
     
     // Fill map with braces and parenthesis
     tokenMap["("] = "OpenParenthesis";
@@ -29,6 +34,10 @@ void Token :: init() {
     tokenMap["/"] = "Operator";
     tokenMap["*"] = "Operator";
     tokenMap["%"] = "Operator";
+    tokenMap["<"] = "Operator";
+    tokenMap["<="] = "Operator";
+    tokenMap[">"] = "Operator";
+    tokenMap[">="] = "Operator";
 
     // Fill map with letters
     for (char c='a'; c<='z'; ++c)
@@ -38,44 +47,59 @@ void Token :: init() {
 
     // Fill map with numbers
     for (char c='0'; c<='9'; ++c)
-		tokenMap[string(1, c)]= "Digit";
+		tokenMap[string(1, c)] = "Digit";
 
 
 }
 
 string Token :: classifyString(string input) {
 
+    string res = "";
 
-    // Check first and last character for braces/parenthesis
-    if (input[0] == '(' || input[-1] == '{') {
-        ;
+    // Chesck first and last character for braces/parenthesis
+    if (input[0] == '(') {
+        res += "( : " + tokenMap["("] + "\n";
     }
 
-    if (input[-1] == ')' || input[-1] == '}') {
-        ;
+    if (input[0] == '{') {
+        res += "{ : " + tokenMap["{"] + "\n";
     }
 
     // Check for operators
+    bool op = false;
     if (isOperator(input)) {
-        ;
+        res += input + " : " + tokenMap[input] + "\n";
+        op = true;
     }
 
     // Check for digits
-    if (isDigit(input)) {
-        ;
+    bool digit = false;
+    if (isDigit(input) && !op) {
+        res += input + " : Digit" + "\n";
+        digit = true;
     }
 
     // Check for keyword
-    if (isKeyword(input)) {
-        ;
+    bool keyword = false;
+    if (isKeyword(input) && !digit) {
+        res += input + " : " + tokenMap[input] + "\n";
+        keyword = true;
     }
 
     // Check for variable/identifier
-    if (isValidIdentifier(input)) {
-        ;
+    if (isValidIdentifier(input) && !keyword) {
+        res += input + " : Identfier" + "\n";
     }
 
-    return input;
+    if (input.back() == ')') {
+        res += ") : " + tokenMap[")"] + "\n";
+    }
+
+    if (input.back() == '}') {
+        res += "} : " + tokenMap["}"] + "\n";
+    }
+
+    return res;
 
 }
 
@@ -102,7 +126,7 @@ bool Token :: isDigit(string input) {
             return false;
         }
     }
-    return false;
+    return true;
 }
 
 bool Token :: isOperator(string input) {
