@@ -72,6 +72,7 @@ void Lexer :: tokenizer(string code) {
             if (whitespace > 0 && tab > 0 && newline > 0) {
                 // Call method for getting type here:
                 string res = token.classifyString(tokenText);
+                cout << res << endl;
                 tokens.push(res);
             } 
             tokenText = "";
