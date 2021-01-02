@@ -83,6 +83,13 @@ stack<string> Lexer :: tokenizer(string code) {
     return tokens;
 }
 
+stack<string> Lexer :: cleanStack(stack<string> tokens) {
+
+    stack<string> cleanTokens;
+
+    return cleanTokens;
+}
+
 int Lexer :: test()
 {
     return 1;

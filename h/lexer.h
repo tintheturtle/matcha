@@ -18,6 +18,7 @@ class Lexer {
         void init();
         string readFile();
         stack<string> tokenizer(string code);
+        stack<string> cleanStack(stack<string> tokens);
         int test();
 };
 

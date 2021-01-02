@@ -16,9 +16,7 @@ int main() {
     Lexer lex; 
     Token token;
     Parser parser;
-    Node node(NodeType::Operation);
-
-    cout << node.getType() << endl;
+    Node root = Node(NodeType::BinaryOperation);
 
     // Read file with code
     string code = lex.readFile();
@@ -26,8 +24,17 @@ int main() {
     stack<string> tokens = lex.tokenizer(code.c_str());
 
     // Testing class methods
-
     parser.generateTree(tokens);
+    cout << root.getType() << endl;
+
+    // Node testing
+    Node *left = new Node(NodeType::Literal);
+    left->setNum("10");
+    cout << left->getNum() << endl;
+
+    root.left = left;
+
+    cout << root.left->getType() << endl;
 
 
     // Hello World
