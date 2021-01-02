@@ -1,29 +1,30 @@
 #include <iostream>
 #include <string>
+#include <stack>
 
 using namespace std;
 
 #include "../h/lexer.h"
 #include "../h/token.h"
-
+#include "../h/parser.h"
 
 
 int main() {
 
-    // Instantiate Lexer
+    // Instantiate Lexer, Parser, and Tokens
     Lexer lex; 
     Token token;
-
-    // cout << token.classifyString("He ll o") << "\n";
+    Parser parser;
 
     // Read file with code
     string code = lex.readFile();
     lex.init();
-    lex.tokenizer(code.c_str());
+    stack<string> tokens = lex.tokenizer(code.c_str());
 
-    // Testing Token class
-    token.init();
-    token.classifyString("hello");
+    // Testing class methods
+
+    parser.generateTree(tokens);
+
 
     // Hello World
     printf("%s\n", "Hello World");

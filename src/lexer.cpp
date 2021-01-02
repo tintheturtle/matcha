@@ -80,8 +80,6 @@ stack<string> Lexer :: tokenizer(string code) {
         }  
     }
 
-    cout << tokens.top() << endl;
-
     return tokens;
 }
 
