@@ -7,6 +7,7 @@ using namespace std;
 #include "../h/lexer.h"
 #include "../h/token.h"
 #include "../h/parser.h"
+#include "../h/node.h"
 
 
 int main() {
@@ -15,6 +16,9 @@ int main() {
     Lexer lex; 
     Token token;
     Parser parser;
+    Node node(NodeType::Operation);
+
+    cout << node.getType() << endl;
 
     // Read file with code
     string code = lex.readFile();
