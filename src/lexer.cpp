@@ -49,7 +49,7 @@ string Lexer :: readFile() {
 }
 
 // Takes a string and tokenizes it
-void Lexer :: tokenizer(string code) {
+stack<string> Lexer :: tokenizer(string code) {
 
     // Initialize stack (holds tokens to return)
     stack<string> tokens;
@@ -72,7 +72,6 @@ void Lexer :: tokenizer(string code) {
             if (whitespace > 0 && tab > 0 && newline > 0) {
                 // Call method for getting type here:
                 string res = token.classifyString(tokenText);
-                cout << res << endl;
                 tokens.push(res);
             } 
             tokenText = "";
@@ -83,6 +82,7 @@ void Lexer :: tokenizer(string code) {
 
     cout << tokens.top() << endl;
 
+    return tokens;
 }
 
 int Lexer :: test()
