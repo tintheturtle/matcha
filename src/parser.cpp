@@ -28,22 +28,31 @@ void Parser :: generateTree(stack<string> tokens) {
     // Will have to manually clean up the AST
 
     Node* root = NULL;
+    Node* curr = NULL;
 
     while(!tokens.empty()) {
+        
+        // Get top token, since C++ does not return the val on .pop()
         string token = tokens.top();
 
-        cout << "Token found: " << token << endl;
-
+        // Make a node with the current token
         Node* res = makeNode(token);
 
+        // Base Case first token will be made the root
         if (root == NULL) {
             root = res;
+            curr = res;
         } else {
+            // Construct AST 
+            
 
         }
 
+        // Debugging/visual statements
+        cout << "Token found: " << token << endl;
         cout << "Made a node: " << res->getType() << endl;
 
+        // Pop the top most token
         tokens.pop();
     }
 

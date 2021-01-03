@@ -12,6 +12,7 @@ Token :: Token(const int t) : temp(t) {}
 void Token :: init() {
 
     // Fill map with keywords
+    tokenMap["def"] = "Keyword";
     tokenMap["int"] = "Keyword";
     tokenMap["return"] = "Keyword";
     tokenMap["print"] = "Keyword";
