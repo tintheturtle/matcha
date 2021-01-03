@@ -16,22 +16,26 @@ enum NodeType {
 
 class Node {
 
+    private:
+        NodeType type;
+        string op;
+        string num;
+        string body;
+
     public:
         Node* left;
         Node* right;
         Node();
         Node(NodeType type);
+        void setType(NodeType type);
         NodeType getType();
         void setOp(string operation);
-        void setNum(string number);
-        void setType(NodeType type);
         string getOp();
+        void setNum(string number);
         string getNum();
-    
-    private:
-        NodeType type;
-        string op;
-        string num;
+        void setBody(string bodyInfo);
+        string getBody();
+
 };
 
 #endif

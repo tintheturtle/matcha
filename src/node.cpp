@@ -23,14 +23,22 @@ void Node :: setOp(string operation) {
     op = operation;
 }
 
-void Node :: setNum(string number) {
-    num = number;
-}
-
 string Node :: getOp() {
     return op;
 }
 
+void Node :: setNum(string number) {
+    num = number;
+}
+
 string Node :: getNum() {
     return num;
+}
+
+void Node :: setBody(string bodyInfo) {
+    body = bodyInfo
+}
+
+string Node :: getBody() {
+    return body;
 }
