@@ -80,12 +80,33 @@ stack<string> Lexer :: tokenizer(string code) {
         }  
     }
 
+    tokens = cleanStack(tokens);
+
     return tokens;
 }
 
 stack<string> Lexer :: cleanStack(stack<string> tokens) {
 
     stack<string> cleanTokens;
+
+    while(!tokens.empty()) {
+        string token = tokens.top();
+        string word = "";
+        for (auto x : token) 
+        {
+            if (x == '\n')
+            {
+                if (word != "\n") {
+                    cleanTokens.push(word);
+                }
+                word = "";
+            }
+            else {
+                word = word + x;
+            }
+        }
+        tokens.pop();
+    }
 
     return cleanTokens;
 }

@@ -5,7 +5,13 @@
 
 using namespace std;
 
+Node :: Node() {}
+
 Node :: Node(NodeType nodeType) {
+    type = nodeType;
+}
+
+void Node :: setType(NodeType nodeType) {
     type = nodeType;
 }
 

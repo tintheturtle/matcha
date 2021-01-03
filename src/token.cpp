@@ -64,13 +64,14 @@ string Token :: classifyString(string input) {
     }
 
     // Check first and last character for braces/parenthesis
+    // TODO: Fix nested braces/parenthesis by having a while(input[0] == '\c') loop
     if (input[0] == '{') {
-        res += "{ : " + tokenMap["{"] + "\n";
+        res += tokenMap["{"] + ": {" + "\n";
         input = input.substr(0);
     }
 
     if (input[0] == '(') {
-        res += "( : " + tokenMap["("] + "\n";
+        res += tokenMap["("] + ": (" + "\n";
         input = input.substr(0);
     }
 
@@ -90,36 +91,36 @@ string Token :: classifyString(string input) {
         // Check for operators
         bool op = false;
         if (isOperator(input)) {
-            res += input + " : " + tokenMap[input] + "\n";
+            res += tokenMap[input] + " : " + input + "\n";
             op = true;
         }
 
         // Check for digits
         bool digit = false;
         if (isDigit(input) && !op) {
-            res += input + " : Digit" + "\n";
+            res += "Digit: " + input + "\n";
             digit = true;
         }
 
         // Check for keyword
         bool keyword = false;
         if (isKeyword(input) && !digit) {
-            res += input + " : " + tokenMap[input] + "\n";
+            res += tokenMap[input] + ": " + input + "\n";
             keyword = true;
         }
 
         // Check for variable/identifier
         if (isValidIdentifier(input) && !keyword) {
-            res += input + " : Identfier" + "\n";
+            res +=  "Identifier: " + input + "\n";
         } 
     }
 
     if (closeParent) {
-        res += ") : " + tokenMap[")"] + "\n";
+        res += tokenMap[")"] + ": )" +  + "\n";
     }
 
     if (closeBrace) {
-        res += "} : " + tokenMap["}"] + "\n";
+        res += tokenMap["}"] + ": }" + "\n";
     }
 
     return res;

@@ -17,10 +17,12 @@ class Node {
     public:
         Node* left;
         Node* right;
+        Node();
         Node(NodeType type);
         NodeType getType();
         void setOp(string operation);
         void setNum(string number);
+        void setType(NodeType type);
         string getOp();
         string getNum();
     
