@@ -10,6 +10,8 @@ enum NodeType {
     Variable = 1,
     BinaryOperation = 2,
     Literal = 3,
+    Brace = 4,
+    Parenthesis = 5,
 };
 
 class Node {

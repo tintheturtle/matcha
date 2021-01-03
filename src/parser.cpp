@@ -9,9 +9,9 @@
 using namespace std;
 
 Parser :: Parser() {
-
-    typelist["OpenParenthesis"] = 0;
-    typelist["OpenBrace"] = 1;
+    
+    typelist["OpenBrace"] = 0;
+    typelist["OpenParenthesis"] = 1;
     typelist["Identifier"] = 2;
     typelist["Keyword"] = 3;
     typelist["Operator"] = 4;
@@ -39,7 +39,7 @@ void Parser :: generateTree(stack<string> tokens) {
         if (root == NULL) {
             root = res;
         } else {
-            
+
         }
 
         cout << "Made a node: " << res->getType() << endl;
@@ -70,13 +70,13 @@ Node* Parser :: makeNode(string token) {
     
     switch(typeInt) {
         case 0:
-            newNode->setType(NodeType::Variable);
+            newNode->setType(NodeType::Brace);
             break;
         case 1:
-            newNode->setType(NodeType::Variable);
+            newNode->setType(NodeType::Parenthesis);
             break;
         case 2:
-            newNode->setType(NodeType::Variable);
+            newNode->setType(NodeType::Function);
             break;
         case 3:
             newNode->setType(NodeType::Variable);
@@ -88,13 +88,13 @@ Node* Parser :: makeNode(string token) {
             newNode->setType(NodeType::Literal);
             break;
         case 6:
-             newNode->setType(NodeType::Variable);
+             newNode->setType(NodeType::Parenthesis);
             break;
         case 7:
-            newNode->setType(NodeType::Variable);
+            newNode->setType(NodeType::Brace);
             break;
         default:
-            newNode->setType(NodeType::Variable);
+            newNode->setType(NodeType::Brace);
             break;
     }
 
