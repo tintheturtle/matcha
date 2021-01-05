@@ -2,16 +2,34 @@
 #define NODE_H
 
 #include <string>
+#include <vector>
 
 using std::string;
+using std::vector;
 
 enum NodeType {
-    Function = 0,
-    Variable = 1,
-    BinaryOperation = 2,
-    Literal = 3,
-    Brace = 4,
-    Parenthesis = 5,
+    Program = -1,
+    Keyword = 0,
+    Function = 1,
+    Variable = 2,
+    BinaryOperation = 3,
+    Literal = 4,
+    // Brace/Parenthesis Types
+    OpenBrace = 5,
+    OpenParenthesis = 6,
+    CloseParenthesis = 7,
+    CloseBrace = 8,
+    // Keyword Types
+    IfStatement = 9,
+    ElseStatement = 10,
+    Condition = 11,
+    Print = 12,
+    // Logical Op Types
+    And = 13,
+    Or = 14,
+    Not = 15,
+    // Loop Types
+    Loop = 16,
 };
 
 class Node {
@@ -23,8 +41,7 @@ class Node {
         string body;
 
     public:
-        Node* left;
-        Node* right;
+        vector<Node*> children;
         Node();
         Node(NodeType type);
         void setType(NodeType type);

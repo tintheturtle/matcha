@@ -41,6 +41,7 @@ void Token :: init() {
     tokenMap[">="] = "Operator";
     tokenMap["=="] = "Operator";
     tokenMap["="] = "Operator";
+    tokenMap["++"] = "Operator";
 
 
     // Fill map with letters
@@ -92,7 +93,7 @@ string Token :: classifyString(string input) {
         // Check for operators
         bool op = false;
         if (isOperator(input)) {
-            res += tokenMap[input] + " : " + input + "\n";
+            res += tokenMap[input] + ": " + input + "\n";
             op = true;
         }
 

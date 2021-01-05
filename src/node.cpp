@@ -36,7 +36,7 @@ string Node :: getNum() {
 }
 
 void Node :: setBody(string bodyInfo) {
-    body = bodyInfo
+    body = bodyInfo;
 }
 
 string Node :: getBody() {

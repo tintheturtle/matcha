@@ -32,9 +32,9 @@ int main() {
     left->setNum("10");
     cout << left->getNum() << endl;
 
-    root.left = left;
+    root.children.push_back(left);
 
-    cout << root.left->getType() << endl;
+    cout << root.children.at(0)->getType() << endl;
 
 
     // Hello World
