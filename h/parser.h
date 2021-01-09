@@ -23,6 +23,7 @@ class Parser {
         void parseIfStatement();
         void parseLoopStatement();
         void parsePrintStatement();
+        stack<string> parseArgs(Node* root, stack<string> tokens);
         std::tuple<Node*, string> makeNode(string token);
         NodeType determineKeyword(string word);
 };

@@ -17,14 +17,14 @@ void Lexer :: init() {
 }
 
 // Takes a file and reads it into a string
-string Lexer :: readFile() {
+string Lexer :: readFile(string fileName) {
 
     // Object for reading file
     ifstream code;
 
     // Open file to read and get ASCII Test 
     // (Note: Must consider directory of makefile for handling files)
-    code.open("./tests/fizzbuzz.txt",ios::in); 
+    code.open(fileName,ios::in); 
 
     // Result string from file
     string res;

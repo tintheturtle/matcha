@@ -19,7 +19,8 @@ int main() {
     Node root = Node(NodeType::BinaryOperation);
 
     // Read file with code
-    string code = lex.readFile();
+    string name = "./tests/addition.txt";
+    string code = lex.readFile(name);
     lex.init();
     stack<string> tokens = lex.tokenizer(code.c_str());
 

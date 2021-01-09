@@ -16,7 +16,7 @@ class Lexer {
     public:
         Lexer(const int temp = 0);
         void init();
-        string readFile();
+        string readFile(string fileName);
         stack<string> tokenizer(string code);
         stack<string> cleanStack(stack<string> tokens);
         int test();

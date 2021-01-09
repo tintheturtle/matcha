@@ -10,6 +10,8 @@
 
 using namespace std;
 
+stack<string> globalTokens;
+
 Parser :: Parser() {
 
     typelist["Program"] = -1;
@@ -61,41 +63,89 @@ void Parser :: generateTree(stack<string> tokens) {
     // Pointers for initial AST Nodes
     Node* root = new Node(NodeType::Program);
     Node* curr = root;
-    Node* prev = NULL;
 
-    // Previous Token on input stack
+    // Previous Type and Token
     string prevToken = "";
+
+    int counter = 0;
 
     while(!tokens.empty()) {
         
-        // Get top token, since C++ does not return the val on .pop()
+        // Get top token and then pop, since C++ does not return the val on .pop()
         string token = tokens.top();
+        tokens.pop();
 
         // Make a node with the current token
         auto nodeRes = makeNode(token);
-
         Node* res = std::get<0>(nodeRes);
         string object = std::get<1>(nodeRes);
 
+        Node* prev = root;
 
-        //Construct AST
-        if (res->getType() == NodeType::Function) {
+        /*
+            Function Arg Parsing
+            First Function keyword == def
+            Second Function keyword == ==>
+        */ 
+        if (res->getType() == NodeType::Function || prevToken == "def") {
 
+            // Function Declaration
             if (object == "def") {
                 curr = res;
             }
 
-            curr->children.push_back(res);
+            // Args parsed and move on to body
+            if (object == "==>") {
+                prevToken = "==>";
+            }
+            continue;
+        }
+
+        /*
+            Function Body
+        */
+        if (res->getType() == NodeType::OpenBrace && prevToken == "==>") {
+
+            // Refer back to Function Declaration Node 
+           
+            
+            continue;
         }
 
 
+
+
         // Debugging/visual statements
-        cout << "Type Made : " << res->getType() << " : " << token << endl;
+        cout << counter << " Type Made : " << res->getType() << " : " << token << endl;
+        counter++;
 
         // Pop the top most token and set prevToken
         prevToken = token;
-        tokens.pop();
     }
+
+}
+
+/*
+*   Method for parsing an args of a function
+*/
+stack<string> Parser :: parseArgs(Node* root, stack<string> tokens) {
+
+    Node* args = root;
+
+    int counter = 0;
+    while(!tokens.empty()) {   
+
+        if (counter == 4) {
+            break;
+        }
+
+        cout << "Popped in Parse Args: " << tokens.top() << endl;
+        counter++;
+        tokens.pop();
+
+    }
+
+    return tokens;
 
 }
 
