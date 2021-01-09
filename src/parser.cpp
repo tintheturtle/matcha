@@ -203,7 +203,7 @@ std::tuple<Node*, string> Parser :: makeNode(string token) {
         case -1: 
             newNode->setType(NodeType::Program);
         case 0:
-            newNode->setType(determineKeyword(word));
+            newNode->setType(keywordType[word]);
             break;
         case 1:
             newNode->setType(NodeType::Function);
@@ -235,22 +235,4 @@ std::tuple<Node*, string> Parser :: makeNode(string token) {
     }
 
     return std::make_tuple(newNode, word);
-}
-
-NodeType Parser :: determineKeyword(string keyword) {
-
-    switch(keywordType[keyword]) {
-        case NodeType::Function:
-            return NodeType::Function;
-        case NodeType::Loop:
-            return NodeType::Loop;
-        case NodeType::Variable:
-            return NodeType::Variable;
-        case NodeType::And:
-            return NodeType::And;
-        default:
-            return NodeType::Literal;
-    }
-
-    return NodeType::Keyword;
 }
