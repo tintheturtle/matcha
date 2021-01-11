@@ -67,6 +67,10 @@ void Parser :: generateTree(stack<string> tokens) {
     // Previous Type and Token
     string prevToken = "";
 
+    // Parsing Flags
+    bool functionArgs = false;
+    bool functionBody = false;
+
     int counter = 0;
 
     while(!tokens.empty()) {
@@ -79,32 +83,61 @@ void Parser :: generateTree(stack<string> tokens) {
         auto nodeRes = makeNode(token);
         Node* res = std::get<0>(nodeRes);
         string object = std::get<1>(nodeRes);
-
-        Node* prev = root;
+        res->setBody(object);
 
         /*
             Function Arg Parsing
             First Function keyword == def
             Second Function keyword == ==>
         */ 
-        if (res->getType() == NodeType::Function || prevToken == "def") {
+        if (res->getType() == NodeType::Function || (functionArgs && !functionBody)) {
 
             // Function Declaration
             if (object == "def") {
+                functionArgs = true;
+
                 curr = res;
+
+                // Create Args[0], Body[1], Return[2] Nodes
+                Node* args = new Node(NodeType::Args);
+                Node* body = new Node(NodeType::Body);
+                Node* returnNode = new Node(NodeType::Return);
+
+                curr->children.push_back(args);
+                curr->children.push_back(body);
+                curr->children.push_back(returnNode);
+
+                root->children.push_back(curr);
+            } else {
+                // End of function declaration
+                if (object == "==>") {
+                    functionArgs = false;
+                    functionBody = true;
+                    continue;
+                }
+                
+                // Add function name to function root node
+                if (object == "=") {
+                    curr.setBody(prevToken);
+                    continue;
+                }
+
+                // Add args 
+                Node* args = curr->children.at(0);
+                args->children.push_back(res);
             }
 
             // Args parsed and move on to body
-            if (object == "==>") {
-                prevToken = "==>";
-            }
+            
+
+            prevToken = object;
             continue;
-        }
+        } 
 
         /*
             Function Body
         */
-        if (res->getType() == NodeType::OpenBrace && prevToken == "==>") {
+        if (res->getType() == NodeType::OpenBrace || (!functionArgs && functionBody)) {
 
             // Refer back to Function Declaration Node 
            
@@ -122,6 +155,15 @@ void Parser :: generateTree(stack<string> tokens) {
         // Pop the top most token and set prevToken
         prevToken = token;
     }
+
+    Node* args = curr->children.at(0);
+
+    cout << "Printing Vector Contents: " << endl;
+
+    for (auto i = args->children.begin(); i != args->children.end(); ++i)
+        cout << (*i)->getBody() << ' ';
+
+    cout << "This is the number of nodes in root: " << args->children.size() << endl;
 
 }
 

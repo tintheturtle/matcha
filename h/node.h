@@ -30,6 +30,10 @@ enum NodeType {
     Not = 15,
     // Loop Types
     Loop = 16,
+    // Function Types
+    Args = 17,
+    Body = 18,
+    Return = 19,
 };
 
 class Node {
@@ -42,6 +46,7 @@ class Node {
 
     public:
         vector<Node*> children;
+        int test = 1;
         Node();
         Node(NodeType type);
         void setType(NodeType type);
